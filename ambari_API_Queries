@@ -1,4 +1,8 @@
  
 #To Get all the hosts in a cluster
 
-curl -u admin:< admin id password> -X GET "http://c349-node1:8080/api/v1/clusters/c349/hosts" | jq '.items[].Hosts.host_name'
+curl -u admin:$passwd -X GET "http://c349-node1:8080/api/v1/clusters/c349/hosts" | jq '.items[].Hosts.host_name'
+
+#To Get blueprint
+
+curl -u admin:$passwd -X GET "http://c349-node1:8080/api/v1/clusters/c349/?format=blueprint"
