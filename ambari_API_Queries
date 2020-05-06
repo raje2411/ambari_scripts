@@ -6,3 +6,15 @@ curl -u admin:$passwd -X GET "http://c349-node1:8080/api/v1/clusters/c349/hosts"
 #To Get blueprint
 
 curl -u admin:$passwd -X GET "http://c349-node1:8080/api/v1/clusters/c349/?format=blueprint"
+
+# To Get all the components installed on a HOST:
+
+curl -k -u admin:admin -H "X-Requested-By: ambari" -X GET  https://c449-node1:8443/api/v1/clusters/c449/hosts/rraman-dp-repo.openstacklocal/host_components |jq '.items[].HostRoles| select (.component_name)|.component_name'
+
+# To delete all the components on a host:-
+
+curl -k -u admin:admin -H "X-Requested-By: ambari" -X GET  https://c449-node1:8443/api/v1/clusters/c449/hosts/rraman-dp-repo.openstacklocal/host_components |jq '.items[].HostRoles| select (.component_name)|.component_name' | awk '{print "curl -k  -u admin:rraman -H \"X-Requested-By: ambari\" -X DELETE https://c449-node1:8443/api/v1/clusters/c449/hosts/rraman-dp-repo.openstacklocal/host_components/"$1}'
+
+# To delete a host:-
+
+curl -k -u admin:admin -H "X-Requested-By: ambari" -X DELETE https://c449-node1:8443/api/v1/clusters/c449/hosts/rraman-dp-repo.openstacklocal/
