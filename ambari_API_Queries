@@ -11,7 +11,7 @@ curl -u admin:$passwd -X GET "http://c349-node1:8080/api/v1/clusters/c349/?forma
 
 curl -k -u admin:admin -H "X-Requested-By: ambari" -X GET  https://c449-node1:8443/api/v1/clusters/c449/hosts/rraman-dp-repo.openstacklocal/host_components |jq '.items[].HostRoles| select (.component_name)|.component_name'
 
-# To delete all the components on a host:-
+# To delete all the components on a host(this will print the curl with DELETE commands, you can run this after review):-
 
 curl -k -u admin:admin -H "X-Requested-By: ambari" -X GET  https://c449-node1:8443/api/v1/clusters/c449/hosts/rraman-dp-repo.openstacklocal/host_components |jq '.items[].HostRoles| select (.component_name)|.component_name' | awk '{print "curl -k  -u admin:rraman -H \"X-Requested-By: ambari\" -X DELETE https://c449-node1:8443/api/v1/clusters/c449/hosts/rraman-dp-repo.openstacklocal/host_components/"$1}'
 
